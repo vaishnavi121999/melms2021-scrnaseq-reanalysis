@@ -1,0 +1,50 @@
+configfile: "workflow/config.yaml"
+
+rule all:
+    input:
+        "results/tables/at2_covid_vs_control_deseq2.csv",
+        "results/figures/umap_celltypes.png",
+        "results/figures/umap_clusters.png",
+        "results/tables/cell_type_markers.csv"
+
+
+rule preprocess:
+    input:
+        sample_sheet=config["sample_sheet"],
+    output:
+        "results/objects/qc_filtered.h5ad"
+    shell:
+        "python -m src.preprocessing --config workflow/config.yaml --output {output}"
+
+
+rule integrate:
+    input:
+        "results/objects/qc_filtered.h5ad"
+    output:
+        h5ad="results/objects/integrated.h5ad",
+        umap="results/figures/umap_clusters.png"
+    shell:
+        "python -m src.integrate --config workflow/config.yaml --input {input} --output {output.h5ad} --umap {output.umap}"
+
+
+rule annotate:
+    input:
+        "results/objects/integrated.h5ad"
+    output:
+        h5ad="results/objects/annotated.h5ad",
+        markers="results/tables/cell_type_markers.csv",
+        umap="results/figures/umap_celltypes.png"
+    shell:
+        "python -m src.annotate --config workflow/config.yaml --input {input} --output {output.h5ad} --markers {output.markers} --umap {output.umap}"
+
+
+rule pseudobulk_de:
+    input:
+        "results/objects/annotated.h5ad"
+    output:
+        counts="results/tables/at2_counts.csv",
+        metadata="results/tables/at2_metadata.csv",
+        results="results/tables/at2_covid_vs_control_deseq2.csv",
+        volcano="results/figures/at2_covid_vs_control_volcano.png"
+    shell:
+        "python -m src.pseudobulk_de --config workflow/config.yaml --input {input} --comparison at2_covid_vs_control --counts {output.counts} --metadata {output.metadata} --output {output.results} --volcano {output.volcano}"

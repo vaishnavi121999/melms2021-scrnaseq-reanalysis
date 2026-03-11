@@ -1,0 +1,33 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+.ipynb_checkpoints/
+
+# OS / Editor cruft
+.DS_Store
+.vscode/
+.idea/
+
+# Python environments
+.venv/
+.env/
+venv/
+.envrc
+
+# Data artifacts (tracked via DVC/notes instead)
+data/raw/
+data/processed/
+results/objects/
+*.h5ad
+*.loom
+*.mtx
+*.h5
+*.gz
+*.zip
+
+# Snakemake
+.snakemake/
+
+# Logs
+logs/

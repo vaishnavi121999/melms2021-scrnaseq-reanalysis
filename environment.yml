@@ -1,0 +1,43 @@
+name: sc-covid-atlas
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - scanpy>=1.10
+  - scvi-tools>=1.2
+  - anndata
+  - pandas>=2.2
+  - numpy>=1.26
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-misc
+  - statsmodels
+  - scikit-learn
+  - umap-learn
+  - gseapy
+  - snakemake-minimal>=7.32
+  - rich
+  - typer
+  - pyyaml
+  - click
+  - python-igraph
+  - louvain
+  - leidenalg
+  - pip
+  - r-base>=4.3
+  - r-optparse
+  - bioconductor-deseq2
+  - bioconductor-biocparallel
+  - bioconductor-apeglm
+  - r-tidyverse
+  - r-ggrepel
+  - r-pheatmap
+  - r-glue
+  - r-readr
+  - r-data.table
+  - r-jsonlite
+  - r-here
+  - r-argparse

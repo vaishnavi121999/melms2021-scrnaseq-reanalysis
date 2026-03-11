@@ -1,0 +1,15 @@
+anndata
+scanpy>=1.10
+scvi-tools>=1.2
+pandas>=2.2
+numpy>=1.26
+scipy
+matplotlib
+seaborn
+statsmodels
+scikit-learn
+umap-learn
+gseapy
+rich
+typer[all]
+pyyaml

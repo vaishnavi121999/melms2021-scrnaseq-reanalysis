@@ -1,0 +1,38 @@
+raw_data_dir: data/raw/GSE171524_RAW            # default relative to repo root
+sample_sheet: data/metadata/sample_sheet.csv
+output_dir: results
+
+qc:
+  min_genes: 200
+  min_cells: 3
+  pct_mt_max: 20
+  pct_ribo_max: 2
+  n_top_genes: 2000
+  upper_gene_quantile: 0.98
+
+integration:
+  n_pcs: 30
+  leiden_resolution: 0.5
+  scvi_latent_dim: 30
+  batch_key: Sample
+  layer_counts: counts
+
+comparisons:
+  - name: at2_covid_vs_control
+    cell_type: AT2
+    groupby: condition
+    case: COVID19
+    control: Control
+    min_cells: 100
+
+cell_type_map:
+  "0": Macrophage
+  "1": Fibroblast
+  "2": Endothelial
+  "3": AT2
+  "4": AT1
+  "5": T cell
+  "6": NK cell
+  "7": B cell / Plasma
+  "8": Cycling
+  "9": Club
